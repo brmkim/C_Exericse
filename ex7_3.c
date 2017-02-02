@@ -24,7 +24,7 @@ int main(void)
 				sumEven += input;
 				countEven++;
 			}
-			if (input == 1 || input % 2 != 0)
+			else // n % 2 is either 1 or -1. Better than else if (input == 1 || input % 2 != 0)
 			{
 				sumOdd += input;	
 				countOdd++;
