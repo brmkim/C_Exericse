@@ -1,4 +1,4 @@
-// rewrite the program in Listing 10.7
+// rewrite the program in Listing 10.7 -- this time with functions
 #include <stdio.h>
 #define MONTHS 12
 #define YEARS 5
