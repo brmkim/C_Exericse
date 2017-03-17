@@ -56,7 +56,6 @@ void averageRow(double arr[][COL])
   int r;
   int c;
   double sum;
-  double* averageRow[COL];
   
   for (c = 0; c < COL; c++)
   {
