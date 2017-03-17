@@ -19,7 +19,7 @@ int main(void)
   return 0;
 }
 
-// a function that returns the index of teh largest value stored in the 
+// a function that returns the index of the largest value stored in the 
 // array of double
 int returnIndex(double * ptr, int len)
 {

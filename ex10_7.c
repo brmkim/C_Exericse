@@ -3,12 +3,13 @@
 #include <stdio.h>
 #define LEN 5
 #define ROW 2
-void copyPtr(double * target, double * source, int n);
-void showArray(double * ptr, int row, int len);
+// to pass a 2D array, it needs to be: double (*array)[LEN)
+// or double array[][LEN]
+double* copyPtr(double (*target)[LEN], double (*source)[LEN]);
+void showArray(double (*array)[LEN]);
 
 int main(void)
 {
-  int i, j = 0;
   double source[ROW][LEN] = 
   {
     {1.1, 2.2, 3.3, 4.4, 5.5},
@@ -16,32 +17,36 @@ int main(void)
     
   };
   double copy[ROW][LEN];
-  
-  showArray(source, ROW, LEN);
-  copyPtr(copy, source, LEN);
-  showArray(copy, ROW, LEN);
+  puts("Original array:");
+  showArray(source);
+  copyPtr(copy, source);
+  puts("Copied array:"); 
+  showArray(copy);
   
   return 0;
 }
 
-void copyPtr(double target[], double source[], int n)
-{
-  int i = 0;
-  
-  for (i = 0; i < n; i++)
-    *(target + i) = *(source + i);
-    
-}
-
-void showArray(double array[], int row, int len)
+double* copyPtr(double (*target)[LEN], double (*source)[LEN])
 {
   int i = 0;
   int j = 0;
   
-  for(i = 0; i < row; i++)
+  for (i = 0; i < ROW; i++)
+    for (j = 0; j < LEN; j++)
+      *(*(target + i) + j) = *(*(source + i)+ j);
+    
+  return *target;  
+}
+
+void showArray(double (*array)[LEN])
+{
+  int i = 0;
+  int j = 0;
+  
+  for(i = 0; i < ROW; i++)
   {
-    for (j = 0; j < len; j++)
-      printf("%.3lf ", i * j + j); // *(*(ptr + i) +j) won't work
+    for (j = 0; j < LEN; j++)
+      printf("%.3lf ", (*(*array + i) +j)); // (==) array[i][j]
       
     puts("");
   }

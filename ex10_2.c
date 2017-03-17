@@ -9,7 +9,7 @@ int main(void)
   copyArr(target1, source, 5);
   copyPtr(target2, source, 5);
   copyPtrs(target3, source, source + 4);
-			    // ?? double * param ?
+			    // source[4] ?
   
   return 0;
 }
@@ -42,13 +42,13 @@ void copyPtr(double * target, double * source, int n)
 
 void copyPtrs(double * target, double * source, double * elem)
 {
-				  // where elem = (source + n)
+				  // where elem = (source + 4)
   int n = 4;
   printf("copyPtrs = ");
   
   for (n = 4; n >= 0; n--)
   {
-    *(target + n) = *(elem - n);
+    *(target + n) = *(elem - n);  // n = 4) target[4] = *(source + 4 - 4) (=) source[0]
     printf("%.1lf ", *(target + n));
   }
   puts("");
