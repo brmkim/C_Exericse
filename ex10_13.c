@@ -2,61 +2,68 @@
 #define ROW 3
 #define COL 5
 
-void store(int row, int col, double arr[row][col]);
-void display(int row, int col, double arr[row][col]);
+void store(double arr[][COL]);
+void display(double arr[][COL]);
+void averageRow(double arr[][COL]);
 
 int main(void)
 {
  int i;
  int j;
- double arr1[COL];
- double arr2[COL];
- double arr3[COL];
+ double arr1[ROW][COL];
+
  puts("Enter three sets of five double numbers");
  puts("to make a 3 X 5 array: ");
  
  // store the input
- store(ROW, COL, arr1);
+ store(arr1);
  // display the array
- display(ROW, COL, arr1);
+ puts("Original array:");
+ display(arr1);
  // average of each row
- averageRow(ROW, COL, arr1);
+ puts("Average of each row:");
+ averageRow(arr1);
+ puts("");
  
   
   return 0;
 }
 
-void store(int row, int col, double arr[row][col])
+void store(double arr[][COL])
 {
  int r;
  int c;
- for (r = 0; r < row; r++)
+ for (r = 0; r < ROW; r++)
  {
-  for (c = 0; c < col; c++)
+  for (c = 0; c < COL; c++)
       scanf("%lf", &arr[r][c]);
  }
 }
-void display(int row, int col, double arr[row][col])
+void display(double arr[][COL])
 {
  int r;
  int c;
- for (r = 0; r < row; r++)
+ for (r = 0; r < ROW; r++)
  {
-  for (c = 0; c < col; c++)
-     printf("%.3lf ", arr[r][c]);
+  for (c = 0; c < COL; c++)
+     printf("%.3lf\t", arr[r][c]);
    
   puts("");
  }
 }
-void averageRow(int row, int col, double arr[row][col])
+void averageRow(double arr[][COL])
 {
   int r;
   int c;
-  double subtot = 0.0;
-  for (r = 0; r < row; r++)
+  double sum;
+  double* averageRow[COL];
+  
+  for (c = 0; c < COL; c++)
   {
-    for (c = 0; c < col; c++)
-      subtot += *(arr[c]);
-    printf("%.3lf ", subtot);
+    sum = 0;  // <--- crucial!
+    for (r = 0; r < ROW; r++)
+      sum += arr[r][c];
+    
+    printf("%.3lf\t", sum / ROW);
   }
 }

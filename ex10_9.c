@@ -1,7 +1,7 @@
 // copy multi-demensional array using variable-length arrays 
 #include <stdio.h>
 
-void copy(int row, int col, double origArr[row][col], double copyArr[row][col]);
+double* copy(int row, int col, double origArr[row][col], double copyArr[row][col]);
 void showArr(int row, int col, double arr[row][col]);
 
 int main(void)
@@ -24,13 +24,15 @@ int main(void)
   return 0;
 }
 
-void copy(int row, int col, double origArr[row][col], double copyArr[row][col])
+double* copy(int row, int col, double origArr[row][col], double copyArr[row][col])
 {
   int r = row;
   int c = col;
   for (r = 0; r < row; r++)
     for (c = 0; c < col; c++)
       copyArr[r][c] = origArr[r][c];   //  r * c + c;  works too
+      
+  return * copyArr;
 }
 
 void showArr(int row, int col, double arr[row][col])
